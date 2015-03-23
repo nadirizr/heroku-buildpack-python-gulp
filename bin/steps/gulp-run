@@ -25,9 +25,8 @@ if [ -f $BUILD_DIR/gulpfile.js ]; then
 
     echo "-----> Running 'gulp production'"
     $BUILD_DIR/node_modules/.bin/gulp production
-  else
+else
     echo "-----> No gulpfile found"
-  fi
 fi
 
 echo
