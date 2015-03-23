@@ -1,12 +1,27 @@
 BUILD_DIR=$1
 
+NODE_VERSION="0.10.30"
+
 # Run production task with Gulp.
 puts-step "Running 'production' task with gulp"
 
 if [ -f $BUILD_DIR/gulpfile.js ]; then
-    # Install gulp locally
+    echo "-----> Found gulpfile"
+
+    # Install node.
+    echo "-----> Installing node.js and npm (version $NODE_VERSION)"
+    NODE_URL="http://s3pository.heroku.com/node/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz"
+    curl $NODE_URL -s -o - | tar xzf - -C $BUILD_DIR
+    mkdir -p $BUILD_DIR/vendor
+    mv $BUILD_DIR/node-v$NODE_VERSION-linux-x64 $BUILD_DIR/vendor/node
+    chmod +x $BUILD_DIR/vendor/node/bin/*
+    PATH=$PATH:$BUILD_DIR/vendor/node/bin
+
+    # Install gulp locally.
+    echo "-----> Installing gulp"
     npm install gulp
-    echo "-----> Found gulpfile, running gulp 'production' task"
+
+    echo "-----> Running 'gulp production'"
     $BUILD_DIR/node_modules/.bin/gulp production
   else
     echo "-----> No gulpfile found"
