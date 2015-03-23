@@ -18,6 +18,8 @@ if [ -f $BUILD_DIR/gulpfile.js ]; then
     PATH=$PATH:$BUILD_DIR/vendor/node/bin
 
     # Install gulp locally.
+    echo "-----> Installing package.json packages"
+    npm install
     echo "-----> Installing gulp"
     npm install gulp
 
