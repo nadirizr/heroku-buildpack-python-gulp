@@ -1,7 +1,7 @@
-Heroku buildpack: Python
-========================
+Heroku buildpack: Python + Gulp
+===============================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Python apps, powered by [pip](http://www.pip-installer.org/).
+This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Python apps with Gulp tasks, powered by [pip](http://www.pip-installer.org/) and [Gulp](http://gulpjs.com/).
 
 
 Usage
@@ -10,9 +10,9 @@ Usage
 Example usage:
 
     $ ls
-    Procfile  requirements.txt  web.py
+    Procfile  requirements.txt  web.py gulpfile.js
 
-    $ heroku create --buildpack git://github.com/heroku/heroku-buildpack-python.git
+    $ heroku create --buildpack git://github.com/nadirizr/heroku-buildpack-python-gulp.git
 
     $ git push heroku master
     ...
@@ -28,11 +28,13 @@ Example usage:
 
 You can also add it to upcoming builds of an existing application:
 
-    $ heroku config:add BUILDPACK_URL=git://github.com/heroku/heroku-buildpack-python.git
+    $ heroku config:add BUILDPACK_URL=git://github.com/nadirizr/heroku-buildpack-python-gulp.git
 
 The buildpack will detect your app as Python if it has the file `requirements.txt` in the root.
 
 It will use Pip to install your dependencies, vendoring a copy of the Python runtime into your slug.
+
+If a gulpfile.js file is present, it will run the task named `production` (gulp production).
 
 Specify a Runtime
 -----------------

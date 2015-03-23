@@ -169,6 +169,9 @@ source $BIN_DIR/steps/cryptography
 # Install dependencies with Pip.
 source $BIN_DIR/steps/pip-install
 
+# Gulp production task.
+source $BIN_DIR/steps/gulp-run $BUILD_DIR
+
 # Django collectstatic support.
 sub-env $BIN_DIR/steps/collectstatic
 
