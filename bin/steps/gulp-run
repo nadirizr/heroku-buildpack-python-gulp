@@ -3,7 +3,7 @@ BUILD_DIR=$1
 # Run production task with Gulp.
 puts-step "Running 'production' task with gulp"
 
-if [ -f $build_dir/gulpfile.js ]; then
+if [ -f $BUILD_DIR/gulpfile.js ]; then
     # Install gulp locally
     npm install gulp
     echo "-----> Found gulpfile, running gulp 'production' task"
@@ -11,6 +11,6 @@ if [ -f $build_dir/gulpfile.js ]; then
   else
     echo "-----> No gulpfile found"
   fi
-)
+fi
 
 echo
